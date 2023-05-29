@@ -1,0 +1,43 @@
+html, * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+
+.wrapper{
+    background-color: gray;
+}
+
+a{
+    text-decoration: none;
+}
+
+.nav{
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1rem;
+}
+
+.nav-menu{
+    display: flex;
+
+}
+
+.nav-menu > li{
+  
+    padding: 0 1rem;
+}
+
+.nav-menu-list{
+    display: none;
+}
+
+.visible{
+    display: block;
+}
