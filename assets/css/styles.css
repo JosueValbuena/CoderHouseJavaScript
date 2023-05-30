@@ -9,7 +9,7 @@ html, * {
   }
 
 .wrapper{
-    background-color: gray;
+    background-color: rgb(235, 235, 235);
 }
 
 a{
@@ -17,27 +17,147 @@ a{
 }
 
 .nav{
-    background-color: black;
-    color: white;
+    background-color: #407076;
     display: flex;
     justify-content: space-between;
-    padding: 0 1rem;
+    align-items: center;
+    padding: .25rem 1rem;
+    width: 100%;
+}
+
+.nav *{
+    color: black;
+    font-weight: bold;
 }
 
 .nav-menu{
     display: flex;
-
 }
 
 .nav-menu > li{
-  
-    padding: 0 1rem;
+    padding: 0 2.5rem;
 }
 
 .nav-menu-list{
     display: none;
+    position: absolute;
+    background-color: #407076;
+}
+
+.nav-menu-list *{
+    transition: .3s;
+    padding: .25rem 0;
+}
+
+.nav-menu *:hover{
+    color: red;
+}
+
+.nav button{
+    background-color: transparent;
+    color: black;
+    border: none;
 }
 
 .visible{
     display: block;
+}
+
+.products{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-items: center;    
+    margin: 0 10rem;
+}
+
+.products > .card{
+    margin: .75rem 1rem 0 1rem;
+    padding: .5rem;
+}
+
+.card{
+    max-width: 20rem;
+    border: 0.5px solid gray;
+    background-color: white;
+}
+
+.card > img{
+    width: 100%;
+    aspect-ratio: 3/2;
+    object-fit: contain;
+}
+
+.card-text{
+    border-top: 1px solid grey;
+}
+
+.card-text-category{
+    color: gray;
+    font-size: .75rem;
+}
+
+.card-text-title{
+    font-size: 1.5rem;
+}
+
+.card-text-description{
+    color: gray;
+}
+
+.card-shoppingCard{
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-shoppingCard-right{
+    display: flex;
+    justify-content: end;
+}
+
+.card-shoppingCard-right-input{
+    max-width: 2rem;
+}
+
+.card-shoppingCard-right-input::-webkit-inner-spin-button, 
+.card-shoppingCard-right-input::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+.card-shoppingCard-right-addButton{
+    background-color: #407076;
+    color: white;
+    border: none;
+    padding: .3rem .7rem;
+    margin-right: .5rem;
+    border-radius: 10px;
+}
+
+.card-shoppingCard-right-addButton:hover{
+    background-color: #80b6bd;
+}
+
+.card-shoppingCard-right-giveButton{
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 0 .25rem;
+    border-top-left-radius: 7px;
+    border-bottom-left-radius: 7px;
+}
+
+.card-shoppingCard-right-giveButton:hover{
+    background-color: rgb(255, 92, 92);
+}
+.card-shoppingCard-right-plusButton{
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 0.25rem;
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px;
+}
+
+.card-shoppingCard-right-plusButton:hover{
+    background-color: rgb(0, 255, 0);
 }
