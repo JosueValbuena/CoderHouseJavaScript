@@ -5,15 +5,16 @@ const shoppingCardQty = document.querySelector(".nav-menu-sc-span")
 
 //import html div to render producst
 const productRenderDiv = document.querySelector(".products")
-const productRenderShoppingCardDiv = document.querySelector(".products-shoppingCard")
+const productRenderShoppingCardDiv = document.querySelector(".shoppingCard-products")
 
 //import buttons from card in main page
 let buttonAddToCard = document.getElementsByClassName("card-shoppingCard-right-addButton");
 
-//import buttons from shopping card page
-const epmtycard = document.querySelector("#products-shoppingCard-emptyCard");
+//import buttons from shopping card
+const btnEpmtycard = document.querySelector("#products-shoppingCard-emptyCard");
 
 btnNavMenuList.addEventListener("click", () => navMenuList.classList.toggle("visible"));
+btnEpmtycard.addEventListener("click", () => emptyCard())
 
 //Import database
 const productos = '/assets/js/db.json';
@@ -35,29 +36,25 @@ async function renderProducts() {
                 <p class="card-text-category">${producto.category}</p>
                 <h3 class="card-text-title">${producto.title}</h3>
                 <p class="card-text-description">${producto.description}</p>
-                <div class="card-shoppingCard">
-                    <p class="card-shoppingCard-price">$${producto.price}</p>
-                    <div class="card-shoppingCard-right">
-                        <button class="card-shoppingCard-right-addButton" id=${producto.id}>Agregar al Carrito</button>
-                        
-                        <button class="card-shoppingCard-right-giveButton">-</button>
-                        <input class="card-shoppingCard-right-input" type="number" min="0" value="1">
-                        <button class="card-shoppingCard-right-plusButton"">+</button>
-                    
-                        </div>
+                <div class="card-button">
+                    <p class="card-button-price">$${producto.price}</p>
+                    <div class="card-button-right">
+                        <button class="card-button-right-addButton" id=${producto.id}>Agregar al Carrito</button>                    
+                    </div>
                 </div>
             </div>
         </div>
         `
     });
     buttonsFunctions();
+    renderShoppingCardProducts()
 }
 
 window.onload = renderProducts();
 
 //Adding function to buttons
 function buttonsFunctions() {
-    buttonAddToCard = document.querySelectorAll(".card-shoppingCard-right-addButton");
+    buttonAddToCard = document.querySelectorAll(".card-button-right-addButton");
     buttonAddToCard.forEach(ele => ele.addEventListener("click", addTocard));
 }
 
@@ -91,22 +88,43 @@ async function addTocard(e) {
     }
     localStorage.setItem('SC', JSON.stringify(shoppingCard));
     shoppingCardQtyRender();
+    renderShoppingCardProducts()
 }
 
 //empty shopping card
-epmtycard.addEventListener("click", () => emptyCard());
+//epmtycard.addEventListener("click", () => emptyCard());
 
 function emptyCard() {
     shoppingCard = [];
     localStorage.setItem("SC", JSON.stringify(shoppingCard));
     shoppingCardQtyRender()
+    renderShoppingCardProducts()
 }
 
 //Rendering card products in Shopping Card .html
 function renderShoppingCardProducts() {
-    shoppingCard.forEach(products =>
+    productRenderShoppingCardDiv.innerHTML = "";
+    shoppingCard.forEach(product =>
         productRenderShoppingCardDiv.innerHTML += `
-        <div>${products.title}</div>
+        <div class="shoppingCard-card">
+            <img src="${product.img}" class="shoppingCard-card-img"/>
+            <div class="shoppingCard-card-right">
+                <div class="shoppingCard-card-right-text">
+                <div>${product.title}</div>
+                <div>${product.price}</div>
+                </div>
+                <div class="shoppingCard-card-right-buttons">
+                    <div>
+                        <button class="card-shoppingCard-right-lessButton" id="${product.id}">-</button>
+                        <input class="card-shoppingCard-right-input" type="number" min="0" value="1">
+                        <button class="card-shoppingCard-right-plusButton" id="${product.id}">+</button>
+                    </div>
+                    <div>
+                        <button>Eliminar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         `
     )
 }

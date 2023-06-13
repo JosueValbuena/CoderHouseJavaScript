@@ -1,3 +1,4 @@
+/* Reset CSS */
 html, * {
     box-sizing: border-box;
     margin: 0;
@@ -16,6 +17,7 @@ a{
     text-decoration: none;
 }
 
+/* NavBar*/
 .nav{
     background-color: #407076;
     display: flex;
@@ -63,11 +65,19 @@ a{
     display: block;
 }
 
+/* Main div */
+.main{
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    justify-content: center;
+}
+
+/* Main Products div */
 .products{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     justify-items: center;    
-    margin: 0 10rem;
+    margin: 0 3rem;
 }
 
 .products > .card{
@@ -104,27 +114,17 @@ a{
     color: gray;
 }
 
-.card-shoppingCard{
+.card-button{
     display: flex;
     justify-content: space-between;
 }
 
-.card-shoppingCard-right{
+.card-button-right{
     display: flex;
     justify-content: end;
 }
 
-.card-shoppingCard-right-input{
-    max-width: 2rem;
-}
-
-.card-shoppingCard-right-input::-webkit-inner-spin-button, 
-.card-shoppingCard-right-input::-webkit-outer-spin-button { 
-  -webkit-appearance: none; 
-  margin: 0; 
-}
-
-.card-shoppingCard-right-addButton{
+.card-button-right-addButton{
     background-color: #407076;
     color: white;
     border: none;
@@ -133,11 +133,58 @@ a{
     border-radius: 10px;
 }
 
-.card-shoppingCard-right-addButton:hover{
+.card-button-right-addButton:hover{
     background-color: #80b6bd;
 }
 
-.card-shoppingCard-right-giveButton{
+/* Main Shopping Card Div */
+.shoppingCard{
+    margin: 0.75rem 1rem;
+}
+
+/* Main Shopping Card Cards */
+.shoppingCard-card{
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    border: 1px solid grey;
+    padding: 1rem 1rem 1rem 0;
+}
+
+.shoppingCard-card > img{
+    width: 7.5rem;
+    aspect-ratio: 3/2;
+    object-fit: contain;
+}
+
+.shoppingCard-card-right{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.shoppingCard-card-right-text{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.shoppingCard-card-right-buttons{
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-shoppingCard-right-input{
+    max-width: 2rem;
+}
+
+/* .card-shoppingCard-right-input::-webkit-inner-spin-button, 
+.card-shoppingCard-right-input::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+} */
+
+.card-shoppingCard-right-lessButton{
     background-color: red;
     color: white;
     border: none;
