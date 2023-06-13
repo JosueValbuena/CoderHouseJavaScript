@@ -1,0 +1,98 @@
+[
+    {
+        "id": 1,
+        "img": "../assets/img/ag1.jpg",
+        "title": "Accesorio 1",
+        "category": "accesorios",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec imperdiet venenatis lectus et lobortis. Fusce semper lacinia lorem, in blandit nunc sodales vel",
+        "price": "9999"
+    },
+    {
+        "id": 2,
+        "img": "../assets/img/ag2.jpg",
+        "title": "Accesorio 2",
+        "category": "accesorios",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec imperdiet venenatis lectus et lobortis. Fusce semper lacinia lorem, in blandit nunc sodales vel",
+        "price": 99999
+    },
+    {
+        "id": 3,
+        "img": "../assets/img/ag3.jpg",
+        "title": "Accesorio 3",
+        "category": "accesorios",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec imperdiet venenatis lectus et lobortis. Fusce semper lacinia lorem, in blandit nunc sodales vel",
+        "price": 124990
+    },
+    {
+        "id": 4,
+        "img": "../assets/img/ag4.jpg",
+        "title": "Accesorio 4",
+        "category": "accesorios",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec imperdiet venenatis lectus et lobortis. Fusce semper lacinia lorem, in blandit nunc sodales vel",
+        "price": 29999
+    },
+    {
+        "id": 5,
+        "img": "../assets/img/ga1.jpg",
+        "title": "Guitarra Acustica 1",
+        "category": "acustica",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec imperdiet venenatis lectus et lobortis. Fusce semper lacinia lorem, in blandit nunc sodales vel",
+        "price": 169990
+    },
+    {
+        "id": 6,
+        "img": "../assets/img/ga2.jpg",
+        "title": "Guitarra Acustica 2",
+        "category": "acustica",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec imperdiet venenatis lectus et lobortis. Fusce semper lacinia lorem, in blandit nunc sodales vel",
+        "price": 127990
+    },
+    {
+        "id": 7,
+        "img": "../assets/img/ga3.jpg",
+        "title": "Guitarra Acustica 3",
+        "category": "acustica",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec imperdiet venenatis lectus et lobortis. Fusce semper lacinia lorem, in blandit nunc sodales vel",
+        "price": 199990
+    },
+    {
+        "id": 8,
+        "img": "../assets/img/ga4.jpg",
+        "title": "Guitarra Acustica 4",
+        "category": "acustica",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec imperdiet venenatis lectus et lobortis. Fusce semper lacinia lorem, in blandit nunc sodales vel",
+        "price": 109990
+    },
+    {
+        "id": 9,
+        "img": "../assets/img/ge1.jpg",
+        "title": "Guitarra Electrica 1",
+        "category": "electrica",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec imperdiet venenatis lectus et lobortis. Fusce semper lacinia lorem, in blandit nunc sodales vel",
+        "price": 184990
+    },
+    {
+        "id": 10,
+        "img": "../assets/img/ge2.jpg",
+        "title": "Guitarra Electrica 2",
+        "category": "electrica",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec imperdiet venenatis lectus et lobortis. Fusce semper lacinia lorem, in blandit nunc sodales vel",
+        "price": 204990
+    },
+    {
+        "id": 11,
+        "img": "../assets/img/ge3.jpg",
+        "title": "Guitarra Electrica 3",
+        "category": "electrica",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec imperdiet venenatis lectus et lobortis. Fusce semper lacinia lorem, in blandit nunc sodales vel",
+        "price": 209990
+    },
+    {
+        "id": 12,
+        "img": "../assets/img/ge4.jpg",
+        "title": "Guitarra Electrica 4",
+        "category": "electrica",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec imperdiet venenatis lectus et lobortis. Fusce semper lacinia lorem, in blandit nunc sodales vel",
+        "price": 149990
+    }
+]
