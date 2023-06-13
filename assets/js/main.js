@@ -16,7 +16,7 @@ const epmtycard = document.querySelector("#products-shoppingCard-emptyCard");
 btnNavMenuList.addEventListener("click", () => navMenuList.classList.toggle("visible"));
 
 //Import database
-const productos = './assets/js/db.json';
+const productos = '/assets/js/db.json';
 
 //Rendering dataBase in HTML with a for
 async function getData() {
@@ -55,7 +55,6 @@ async function renderProducts() {
 
 window.onload = renderProducts();
 
-
 //Adding function to buttons
 function buttonsFunctions() {
     buttonAddToCard = document.querySelectorAll(".card-shoppingCard-right-addButton");
@@ -72,21 +71,12 @@ if (shoppingCardStorage) {
     shoppingCard = [];
 }
 
-//Rendering card products in Shopping Card .html
-function renderShoppingCardProducts() {
-    shoppingCard.forEach(products =>
-        productRenderShoppingCardDiv.innerHTML += `
-        <div>${products.title}</div>
-        `
-    )
-}
-
-epmtycard.addEventListener("click", () => emptyCard());
-
+// show total items card in navbar
 function shoppingCardQtyRender() {
     shoppingCardQty.textContent = shoppingCard.map(ele => ele.qty).reduce((a, b) => a + b, 0);
 }
 
+//add items to card
 async function addTocard(e) {
     const buttonId = e.currentTarget.id;
     const dataBase = await getData();
@@ -103,8 +93,20 @@ async function addTocard(e) {
     shoppingCardQtyRender();
 }
 
+//empty shopping card
+epmtycard.addEventListener("click", () => emptyCard());
+
 function emptyCard() {
     shoppingCard = [];
     localStorage.setItem("SC", JSON.stringify(shoppingCard));
     shoppingCardQtyRender()
+}
+
+//Rendering card products in Shopping Card .html
+function renderShoppingCardProducts() {
+    shoppingCard.forEach(products =>
+        productRenderShoppingCardDiv.innerHTML += `
+        <div>${products.title}</div>
+        `
+    )
 }
