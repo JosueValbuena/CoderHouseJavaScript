@@ -10,9 +10,11 @@ const productRenderShoppingCardDiv = document.querySelector(".shoppingCard-produ
 //import buttons from card in main page
 let buttonAddToCard = document.getElementsByClassName("card-shoppingCard-right-addButton");
 
-//import buttons from shopping card
+//import components from shopping card
 const btnEpmtycard = document.querySelector("#products-shoppingCard-emptyCard");
+const totalShoppingCard = document.querySelector(".products-shoppingCard-total");
 
+//events listeners
 btnNavMenuList.addEventListener("click", () => navMenuList.classList.toggle("visible"));
 btnEpmtycard.addEventListener("click", () => emptyCard())
 
@@ -92,8 +94,6 @@ async function addTocard(e) {
 }
 
 //empty shopping card
-//epmtycard.addEventListener("click", () => emptyCard());
-
 function emptyCard() {
     shoppingCard = [];
     localStorage.setItem("SC", JSON.stringify(shoppingCard));
@@ -116,7 +116,7 @@ function renderShoppingCardProducts() {
                 <div class="shoppingCard-card-right-buttons">
                     <div>
                         <button class="card-shoppingCard-right-lessButton" id="${product.id}">-</button>
-                        <input class="card-shoppingCard-right-input" type="number" min="0" value="1">
+                        <p class="card-shoppingCard-right-input" type="number" min="0" value="1" id="${product.id}">1</p>
                         <button class="card-shoppingCard-right-plusButton" id="${product.id}">+</button>
                     </div>
                     <div>
@@ -127,4 +127,26 @@ function renderShoppingCardProducts() {
         </div>
         `
     )
+    addfunctionSCbuttons()
+    paymentTotal()
+}
+
+function addfunctionSCbuttons(){
+    const buttonsPlus = document.querySelectorAll(".card-shoppingCard-right-plusButton");
+    const buttonsLess = document.querySelectorAll(".card-shoppingCard-right-lessButton")
+    buttonsPlus.forEach(button => button.addEventListener("click", plusSC));
+    buttonsLess.forEach(button => button.addEventListener("click", lessSC));
+}
+
+function plusSC(e){
+    console.log(e.currentTarget.id);
+}
+
+function lessSC(e){
+    console.log(e.currentTarget.id)
+}
+
+//total mount shopping card
+function paymentTotal(){
+    totalShoppingCard.textContent = shoppingCard.map(ele => ele.price * ele.qty).reduce((a, b) => a + b, 0).toLocaleString("es");
 }
