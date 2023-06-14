@@ -116,7 +116,7 @@ function renderShoppingCardProducts() {
                 <div class="shoppingCard-card-right-buttons">
                     <div>
                         <button class="card-shoppingCard-right-lessButton" id="${product.id}">-</button>
-                        <p class="card-shoppingCard-right-input" type="number" min="0" value="1" id="${product.id}">1</p>
+                        <p class="card-shoppingCard-right-input" type="number" min="0" value="${product.qty}" id="${product.id}">1</p>
                         <button class="card-shoppingCard-right-plusButton" id="${product.id}">+</button>
                     </div>
                     <div>
