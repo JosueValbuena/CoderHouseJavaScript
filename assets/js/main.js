@@ -79,8 +79,8 @@ function shoppingCardQtyRender() {
 async function addTocard(e) {
     const buttonId = e.currentTarget.id;
     const dataBase = await getData();
-    const existe = shoppingCard.some(ele => ele.id === Number(buttonId))
-    if (existe) {
+    const exist = shoppingCard.some(ele => ele.id === Number(buttonId))
+    if (exist) {
         const index = shoppingCard.findIndex(ele => ele.id === Number(buttonId))
         shoppingCard[index].qty++;
     } else {
@@ -131,6 +131,7 @@ function renderShoppingCardProducts() {
     paymentTotal()
 }
 
+//adding functions to shopping card buttons
 function addfunctionSCbuttons(){
     const buttonsPlus = document.querySelectorAll(".card-shoppingCard-right-plusButton");
     const buttonsLess = document.querySelectorAll(".card-shoppingCard-right-lessButton")
@@ -139,11 +140,25 @@ function addfunctionSCbuttons(){
 }
 
 function plusSC(e){
-    console.log(e.currentTarget.id);
+    const id = e.currentTarget.id;
+    const productos = shoppingCard;
+    const index = shoppingCard.findIndex(ele => ele.id == id);
+    const input = document.querySelectorAll(".card-shoppingCard-right-input");
+    const inputArray = Array.prototype.slice.call(input);
+    const indexInputArray = inputArray.find(ele => ele.id == id);
+    indexInputArray.textContent = productos[index].qty += 1;
+    paymentTotal()
 }
 
 function lessSC(e){
-    console.log(e.currentTarget.id)
+    const id = e.currentTarget.id;
+    const productos = shoppingCard;
+    const index = shoppingCard.findIndex(ele => ele.id == id);
+    const input = document.querySelectorAll(".card-shoppingCard-right-input");
+    const inputArray = Array.prototype.slice.call(input);
+    const indexInputArray = inputArray.find(ele => ele.id == id);
+    indexInputArray.textContent = productos[index].qty -= 1;
+    paymentTotal();
 }
 
 //total mount shopping card
