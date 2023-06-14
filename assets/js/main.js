@@ -120,7 +120,7 @@ function renderShoppingCardProducts() {
                         <button class="card-shoppingCard-right-plusButton" id="${product.id}">+</button>
                     </div>
                     <div>
-                        <button>Eliminar</button>
+                        <button class="card-shoppingCard-right-delete" id="${product.id}">Eliminar</button>
                     </div>
                 </div>
             </div>
@@ -134,9 +134,11 @@ function renderShoppingCardProducts() {
 //adding functions to shopping card buttons
 function addfunctionSCbuttons(){
     const buttonsPlus = document.querySelectorAll(".card-shoppingCard-right-plusButton");
-    const buttonsLess = document.querySelectorAll(".card-shoppingCard-right-lessButton")
+    const buttonsLess = document.querySelectorAll(".card-shoppingCard-right-lessButton");
+    const buttonsDelete = document.querySelectorAll(".card-shoppingCard-right-delete");
     buttonsPlus.forEach(button => button.addEventListener("click", plusSC));
     buttonsLess.forEach(button => button.addEventListener("click", lessSC));
+    buttonsDelete.forEach(button => button.addEventListener("click", deleteProduct));
 }
 
 function plusSC(e){
@@ -147,6 +149,7 @@ function plusSC(e){
     const inputArray = Array.prototype.slice.call(input);
     const indexInputArray = inputArray.find(ele => ele.id == id);
     indexInputArray.textContent = productos[index].qty += 1;
+    localStorage.setItem("SC", JSON.stringify(shoppingCard));
     paymentTotal()
 }
 
@@ -158,6 +161,20 @@ function lessSC(e){
     const inputArray = Array.prototype.slice.call(input);
     const indexInputArray = inputArray.find(ele => ele.id == id);
     indexInputArray.textContent = productos[index].qty -= 1;
+    if(shoppingCard[index].qty == 0){
+        deleteProduct(e);
+        localStorage.setItem("SC", JSON.stringify(shoppingCard));
+    }
+    paymentTotal();
+}
+
+function deleteProduct(e){
+    const id = e.currentTarget.id;
+    const productos = shoppingCard;
+    const index = productos.findIndex(ele => ele.id == id);
+    shoppingCard.splice(index, 1);
+    localStorage.setItem("SC", JSON.stringify(shoppingCard));
+    renderShoppingCardProducts()
     paymentTotal();
 }
 
