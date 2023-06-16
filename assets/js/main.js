@@ -1,7 +1,10 @@
 //import components from navbar
 const btnNavMenuList = document.querySelector("#categorias");
 const navMenuList = document.querySelector(".nav-menu-list");
-const shoppingCardQty = document.querySelector(".nav-menu-sc-span")
+const shoppingCardQty = document.querySelector(".nav-menu-sc-span");
+const navButtonAcusticas = document.querySelector("#nav-buttonAcusticas");
+const navButtonElectricas = document.querySelector("#nav-buttonElectricas");
+const navButtonAccesorios = document.querySelector("#nav-buttonAccesorios");
 
 //import html div to render producst
 const productRenderDiv = document.querySelector(".products")
@@ -16,7 +19,10 @@ const totalShoppingCard = document.querySelector(".products-shoppingCard-total")
 
 //events listeners
 btnNavMenuList.addEventListener("click", () => navMenuList.classList.toggle("visible"));
-btnEpmtycard.addEventListener("click", () => emptyCard())
+btnEpmtycard.addEventListener("click", () => emptyCard());
+navButtonAcusticas.addEventListener("click", ()=>renderProducts("acustica"));
+navButtonElectricas.addEventListener("click", ()=>renderProducts("electrica"));
+navButtonAccesorios.addEventListener("click", ()=>renderProducts("accesorios"));
 
 //Import database
 const productos = '/assets/js/db.json';
@@ -29,9 +35,16 @@ async function getData() {
 }
 
 //Rendering all products in index.html
-async function renderProducts() {
+async function renderProducts(filter) {
     const dataBase = await getData()
-    dataBase.forEach(producto => {
+    let filterDB = ""; 
+    if (!filter){
+        filterDB = dataBase 
+    }else{
+        filterDB = dataBase.filter( product => product.category == filter);    
+    }
+    productRenderDiv.innerHTML = "";
+    filterDB.forEach(producto => {
         productRenderDiv.innerHTML += `<div class="card">
         <img src=${producto.img} alt="">
             <div class="card-text">
@@ -114,9 +127,9 @@ function renderShoppingCardProducts() {
                 <div>${product.price}</div>
                 </div>
                 <div class="shoppingCard-card-right-buttons">
-                    <div>
+                    <div class="shoppingCard-card-right-buttons-items">
                         <button class="card-shoppingCard-right-lessButton" id="${product.id}">-</button>
-                        <p class="card-shoppingCard-right-input" type="number" min="0" value="${product.qty}" id="${product.id}">1</p>
+                        <p class="card-shoppingCard-right-input" type="number" min="0" id="${product.id}">${product.qty}</p>
                         <button class="card-shoppingCard-right-plusButton" id="${product.id}">+</button>
                     </div>
                     <div>
@@ -163,8 +176,8 @@ function lessSC(e){
     indexInputArray.textContent = productos[index].qty -= 1;
     if(shoppingCard[index].qty == 0){
         deleteProduct(e);
-        localStorage.setItem("SC", JSON.stringify(shoppingCard));
     }
+    localStorage.setItem("SC", JSON.stringify(shoppingCard));
     paymentTotal();
 }
 

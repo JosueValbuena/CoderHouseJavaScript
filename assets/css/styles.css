@@ -145,7 +145,7 @@ a{
 /* Main Shopping Card Cards */
 .shoppingCard-card{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     background-color: white;
     border: 1px solid grey;
     padding: 1rem 1rem 1rem 0;
@@ -171,7 +171,16 @@ a{
 
 .shoppingCard-card-right-buttons{
     display: flex;
-    justify-content: space-between;
+    justify-content: start;
+}
+
+.shoppingCard-card-right-buttons-items{
+    display: flex;
+    align-items: center;
+}
+
+.shoppingCard-card-right-buttons-items > *{
+    margin: 0 0.25rem;
 }
 
 .card-shoppingCard-right-input{
@@ -193,14 +202,14 @@ a{
     border-bottom-left-radius: 7px;
 }
 
-.card-shoppingCard-right-giveButton:hover{
+.card-shoppingCard-right-lessButton:hover{
     background-color: rgb(255, 92, 92);
 }
 .card-shoppingCard-right-plusButton{
     background-color: green;
     color: white;
     border: none;
-    padding: 0.25rem;
+    padding: 0 0.25rem;
     border-top-right-radius: 7px;
     border-bottom-right-radius: 7px;
 }
