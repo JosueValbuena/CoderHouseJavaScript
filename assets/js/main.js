@@ -16,14 +16,15 @@ let buttonAddToCard = document.getElementsByClassName("card-shoppingCard-right-a
 //import components from shopping card
 const btnEpmtycard = document.querySelector("#products-shoppingCard-emptyCard");
 const totalShoppingCard = document.querySelector(".products-shoppingCard-total");
+const btnPay = document.querySelector(".shoppingCard-Pay");
 
 //events listeners
 btnNavMenuList.addEventListener("click", () => navMenuList.classList.toggle("visible"));
 btnEpmtycard.addEventListener("click", () => emptyCard());
-navButtonAcusticas.addEventListener("click", ()=>renderProducts("acustica"));
-navButtonElectricas.addEventListener("click", ()=>renderProducts("electrica"));
-navButtonAccesorios.addEventListener("click", ()=>renderProducts("accesorios"));
-
+navButtonAcusticas.addEventListener("click", () => renderProducts("acustica"));
+navButtonElectricas.addEventListener("click", () => renderProducts("electrica"));
+navButtonAccesorios.addEventListener("click", () => renderProducts("accesorios"));
+btnPay.addEventListener("click", () => payBill());
 //Import database
 const productos = '/assets/js/db.json';
 
@@ -37,11 +38,11 @@ async function getData() {
 //Rendering all products in index.html
 async function renderProducts(filter) {
     const dataBase = await getData()
-    let filterDB = ""; 
-    if (!filter){
-        filterDB = dataBase 
-    }else{
-        filterDB = dataBase.filter( product => product.category == filter);    
+    let filterDB = "";
+    if (!filter) {
+        filterDB = dataBase
+    } else {
+        filterDB = dataBase.filter(product => product.category == filter);
     }
     productRenderDiv.innerHTML = "";
     filterDB.forEach(producto => {
@@ -145,7 +146,7 @@ function renderShoppingCardProducts() {
 }
 
 //adding functions to shopping card buttons
-function addfunctionSCbuttons(){
+function addfunctionSCbuttons() {
     const buttonsPlus = document.querySelectorAll(".card-shoppingCard-right-plusButton");
     const buttonsLess = document.querySelectorAll(".card-shoppingCard-right-lessButton");
     const buttonsDelete = document.querySelectorAll(".card-shoppingCard-right-delete");
@@ -154,7 +155,7 @@ function addfunctionSCbuttons(){
     buttonsDelete.forEach(button => button.addEventListener("click", deleteProduct));
 }
 
-function plusSC(e){
+function plusSC(e) {
     const id = e.currentTarget.id;
     const productos = shoppingCard;
     const index = shoppingCard.findIndex(ele => ele.id == id);
@@ -163,10 +164,11 @@ function plusSC(e){
     const indexInputArray = inputArray.find(ele => ele.id == id);
     indexInputArray.textContent = productos[index].qty += 1;
     localStorage.setItem("SC", JSON.stringify(shoppingCard));
-    paymentTotal()
+    paymentTotal();
+    shoppingCardQtyRender();
 }
 
-function lessSC(e){
+function lessSC(e) {
     const id = e.currentTarget.id;
     const productos = shoppingCard;
     const index = shoppingCard.findIndex(ele => ele.id == id);
@@ -174,14 +176,15 @@ function lessSC(e){
     const inputArray = Array.prototype.slice.call(input);
     const indexInputArray = inputArray.find(ele => ele.id == id);
     indexInputArray.textContent = productos[index].qty -= 1;
-    if(shoppingCard[index].qty == 0){
+    if (shoppingCard[index].qty == 0) {
         deleteProduct(e);
     }
     localStorage.setItem("SC", JSON.stringify(shoppingCard));
     paymentTotal();
+    shoppingCardQtyRender();
 }
 
-function deleteProduct(e){
+function deleteProduct(e) {
     const id = e.currentTarget.id;
     const productos = shoppingCard;
     const index = productos.findIndex(ele => ele.id == id);
@@ -192,6 +195,32 @@ function deleteProduct(e){
 }
 
 //total mount shopping card
-function paymentTotal(){
+function paymentTotal() {
     totalShoppingCard.textContent = shoppingCard.map(ele => ele.price * ele.qty).reduce((a, b) => a + b, 0).toLocaleString("es");
+}
+
+function payBill() {
+    Swal.fire(
+        '¡Muchas gracias por tu compra!',
+        'Hemos procesado tu pago y tu compra ha sido exitosa',
+        'success'
+    )
+    
+    Swal.fire({
+      title: '¿Estas seguro de eliminar este articulo de tu carrito?',
+      text: "Si realizas tu compra, este producto no estara despues de ser eliminado",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, eliminar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Producto eliminado',
+          'Se ha eliminado tu producto correctamente',
+          'success'
+        )
+      }
+    })
 }

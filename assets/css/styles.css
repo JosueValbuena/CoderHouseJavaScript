@@ -46,6 +46,10 @@ a{
     background-color: #407076;
 }
 
+.nav-menu-list:hover{
+    display: block;
+}
+
 .nav-menu-list *{
     transition: .3s;
     padding: .25rem 0;
