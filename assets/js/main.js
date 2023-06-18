@@ -185,13 +185,34 @@ function lessSC(e) {
 }
 
 function deleteProduct(e) {
-    const id = e.currentTarget.id;
-    const productos = shoppingCard;
-    const index = productos.findIndex(ele => ele.id == id);
-    shoppingCard.splice(index, 1);
-    localStorage.setItem("SC", JSON.stringify(shoppingCard));
-    renderShoppingCardProducts()
-    paymentTotal();
+    Swal.fire({
+        title: '¿Estas seguro de eliminar este articulo de tu carrito?',
+        text: "Si realizas tu compra, este producto no estara despues de ser eliminado",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, eliminar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire(
+                'Producto eliminado',
+                'Se ha eliminado tu producto correctamente',
+                'success',
+                borrar(),
+                console.log("hi")
+            )
+            function borrar(e) {
+                const id = e.currentTarget.id;
+                const productos = shoppingCard;
+                const index = productos.findIndex(ele => ele.id == id);
+                shoppingCard.splice(index, 1);
+                localStorage.setItem("SC", JSON.stringify(shoppingCard));
+                renderShoppingCardProducts()
+                paymentTotal();
+            }
+        }
+    })
 }
 
 //total mount shopping card
@@ -200,27 +221,33 @@ function paymentTotal() {
 }
 
 function payBill() {
-    Swal.fire(
-        '¡Muchas gracias por tu compra!',
-        'Hemos procesado tu pago y tu compra ha sido exitosa',
-        'success'
-    )
-    
-    Swal.fire({
-      title: '¿Estas seguro de eliminar este articulo de tu carrito?',
-      text: "Si realizas tu compra, este producto no estara despues de ser eliminado",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Si, eliminar'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire(
-          'Producto eliminado',
-          'Se ha eliminado tu producto correctamente',
-          'success'
-        )
-      }
-    })
+     let totalShoppingCard = shoppingCard.map(ele => ele.price * ele.qty).reduce((a, b) => a + b, 0).toLocaleString("es");
+    if(totalShoppingCard == 0){
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Tu carrito esta vacio, agrega productos para poder realizar una compra',
+            timer: 2000
+          })
+    }else{
+        Swal.fire({
+            title: 'Total a pagar',
+            text: `El total de tu compra es ${totalShoppingCard}`,
+            icon: 'info',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Relizar pago'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Compra realizada con exito',
+                    text: 'Muchas gracias por tu compra!',
+                    timer: 2000
+                  })
+                  setTimeout(() => emptyCard(), 1000)
+                }
+        })
+    }
 }
